@@ -244,14 +244,14 @@ export default function Index() {
             {question.text}
           </h2>
 
-          <div className="space-y-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {question.options.map((option, index) => (
               <button
                 key={index}
                 onClick={() => handleAnswer(option.points, index)}
                 disabled={selectedOption !== null}
                 className={`
-                  w-full p-5 text-left rounded-2xl border-2 transition-all
+                  w-full text-left rounded-2xl border-2 transition-all overflow-hidden
                   ${
                     selectedOption === index
                       ? 'border-[#87C737] bg-[#87C737]/10 scale-[0.98]'
@@ -261,15 +261,31 @@ export default function Index() {
                   disabled:cursor-not-allowed
                 `}
               >
-                <div className="flex items-start gap-4">
-                  {option.image && (
-                    <img 
-                      src={option.image} 
-                      alt="" 
-                      className="w-20 h-20 rounded-xl object-cover flex-shrink-0"
-                    />
-                  )}
-                  <div className="flex items-start gap-4 flex-1">
+                {option.image ? (
+                  <div className="flex flex-col">
+                    <div className="relative aspect-[4/3] w-full">
+                      <img 
+                        src={option.image} 
+                        alt="" 
+                        className="w-full h-full object-cover"
+                      />
+                      <div className={`
+                        absolute top-3 right-3 w-8 h-8 rounded-full border-2 flex items-center justify-center bg-white
+                        ${selectedOption === index ? 'border-[#87C737] bg-[#87C737]' : 'border-[#313434]/20'}
+                      `}>
+                        {selectedOption === index && (
+                          <Icon name="Check" size={16} className="text-white" />
+                        )}
+                      </div>
+                    </div>
+                    <div className="p-4">
+                      <span className="text-[#313434] text-sm md:text-base">
+                        {option.text}
+                      </span>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="flex items-start gap-4 p-5">
                     <div className={`
                       flex-shrink-0 w-8 h-8 rounded-full border-2 flex items-center justify-center
                       ${selectedOption === index ? 'border-[#87C737] bg-[#87C737]' : 'border-[#313434]/20'}
@@ -282,7 +298,7 @@ export default function Index() {
                       {option.text}
                     </span>
                   </div>
-                </div>
+                )}
               </button>
             ))}
           </div>
