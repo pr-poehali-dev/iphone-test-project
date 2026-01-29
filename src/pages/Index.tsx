@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
-import { Progress } from '@/components/ui/progress';
 import Icon from '@/components/ui/icon';
 
 interface Question {
@@ -231,7 +230,12 @@ export default function Index() {
               {Math.round(progress)}%
             </span>
           </div>
-          <Progress value={progress} className="h-2" />
+          <div className="h-2 w-full bg-[#313434]/10 rounded-full overflow-hidden">
+            <div 
+              className="h-full bg-[#87C737] transition-all duration-300 ease-out"
+              style={{ width: `${progress}%` }}
+            />
+          </div>
         </div>
 
         <Card className="p-8 md:p-10 animate-fade-in border-0 shadow-xl">
