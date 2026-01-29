@@ -9,6 +9,7 @@ interface Question {
   options: Array<{
     text: string;
     points: number;
+    image?: string;
   }>;
 }
 
@@ -35,22 +36,22 @@ const questions: Question[] = [
     id: 2,
     text: 'Зачем тебе камера?',
     options: [
-      { text: 'Снимать видео в 4K и делать самые красивые фото.', points: 10 },
-      { text: 'Какая камера? Я звоню и переписываюсь по нему.', points: 2 },
-      { text: 'Чтобы фоткать любимых и делать эстетичные кадры для Пинтерест.', points: 5 },
-      { text: 'Фотографировать счетчики и сохранять мемы.', points: 1 },
-      { text: 'Чтобы запечатлеть каждое мгновение путешествия.', points: 6 },
+      { text: 'Снимать видео в 4K и делать самые красивые фото.', points: 10, image: 'https://cdn.poehali.dev/projects/2c16233a-d920-45af-aa57-1586918a652b/files/ecca2e5d-6ed9-4b04-8a8f-16bcbfbb97e9.jpg' },
+      { text: 'Какая камера? Я звоню и переписываюсь по нему.', points: 2, image: 'https://cdn.poehali.dev/projects/2c16233a-d920-45af-aa57-1586918a652b/files/c28bcebb-a37a-4bb9-80e1-5d5783143361.jpg' },
+      { text: 'Чтобы фоткать любимых и делать эстетичные кадры для Пинтерест.', points: 5, image: 'https://cdn.poehali.dev/projects/2c16233a-d920-45af-aa57-1586918a652b/files/0252c258-4442-4795-b196-8e0a20eeec85.jpg' },
+      { text: 'Фотографировать счетчики и сохранять мемы.', points: 1, image: 'https://cdn.poehali.dev/projects/2c16233a-d920-45af-aa57-1586918a652b/files/454edac8-ff02-4e99-b959-55a0bcf570be.jpg' },
+      { text: 'Чтобы запечатлеть каждое мгновение путешествия.', points: 6, image: 'https://cdn.poehali.dev/projects/2c16233a-d920-45af-aa57-1586918a652b/files/f4c5c32c-b045-448e-84c3-12e1177e1ca9.jpg' },
     ],
   },
   {
     id: 3,
     text: 'Какой размер экрана предпочитаешь?',
     options: [
-      { text: 'Большой! Чем больше, тем лучше для контента.', points: 10 },
-      { text: 'Обычный, лишь бы в карман влезал.', points: 2 },
-      { text: 'Средний — золотая середина между удобством и размером.', points: 5 },
-      { text: 'Компактный, я минималист.', points: 1 },
-      { text: 'Не важно, главное чтоб фотки были четкие.', points: 6 },
+      { text: 'Большой! Чем больше, тем лучше для контента.', points: 10, image: 'https://cdn.poehali.dev/projects/2c16233a-d920-45af-aa57-1586918a652b/files/a192728f-e13c-4759-99d8-11e29cb5aed4.jpg' },
+      { text: 'Обычный, лишь бы в карман влезал.', points: 2, image: 'https://cdn.poehali.dev/projects/2c16233a-d920-45af-aa57-1586918a652b/files/f478e2b8-d548-49b7-9831-3ae8233ed82a.jpg' },
+      { text: 'Средний — золотая середина между удобством и размером.', points: 5, image: 'https://cdn.poehali.dev/projects/2c16233a-d920-45af-aa57-1586918a652b/files/bdb1b754-541c-4dd2-a12c-4da011f6fbce.jpg' },
+      { text: 'Компактный, я минималист.', points: 1, image: 'https://cdn.poehali.dev/projects/2c16233a-d920-45af-aa57-1586918a652b/files/5bc95dfb-914a-445c-b8ab-b1a189750dcb.jpg' },
+      { text: 'Не важно, главное чтоб фотки были четкие.', points: 6, image: 'https://cdn.poehali.dev/projects/2c16233a-d920-45af-aa57-1586918a652b/files/4d7be84d-ead5-4edf-b274-a33e15d242e1.jpg' },
     ],
   },
   {
@@ -261,17 +262,26 @@ export default function Index() {
                 `}
               >
                 <div className="flex items-start gap-4">
-                  <div className={`
-                    flex-shrink-0 w-8 h-8 rounded-full border-2 flex items-center justify-center
-                    ${selectedOption === index ? 'border-[#87C737] bg-[#87C737]' : 'border-[#313434]/20'}
-                  `}>
-                    {selectedOption === index && (
-                      <Icon name="Check" size={16} className="text-white" />
-                    )}
+                  {option.image && (
+                    <img 
+                      src={option.image} 
+                      alt="" 
+                      className="w-20 h-20 rounded-xl object-cover flex-shrink-0"
+                    />
+                  )}
+                  <div className="flex items-start gap-4 flex-1">
+                    <div className={`
+                      flex-shrink-0 w-8 h-8 rounded-full border-2 flex items-center justify-center
+                      ${selectedOption === index ? 'border-[#87C737] bg-[#87C737]' : 'border-[#313434]/20'}
+                    `}>
+                      {selectedOption === index && (
+                        <Icon name="Check" size={16} className="text-white" />
+                      )}
+                    </div>
+                    <span className="text-[#313434] text-base md:text-lg flex-1">
+                      {option.text}
+                    </span>
                   </div>
-                  <span className="text-[#313434] text-base md:text-lg flex-1">
-                    {option.text}
-                  </span>
                 </div>
               </button>
             ))}
