@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Какой смартфон тебе подходит?</title>
+    <link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+    <div class="container">
+        <div id="start-screen" class="screen active">
+            <div class="hero">
+                <h1 class="title">Какой смартфон тебе подходит?</h1>
+                <p class="subtitle">Узнай свой идеальный телефон за 5 вопросов</p>
+                <button id="start-btn" class="btn-primary">Начать тест</button>
+            </div>
+        </div>
+
+        <div id="quiz-screen" class="screen">
+            <div class="progress-bar">
+                <div id="progress" class="progress-fill"></div>
+            </div>
+            
+            <div class="quiz-card">
+                <h2 id="question-text" class="question-text"></h2>
+                <div id="options-container" class="options-container"></div>
+            </div>
+        </div>
+
+        <div id="result-screen" class="screen">
+            <div class="result-card">
+                <div id="result-emoji" class="result-emoji"></div>
+                <h2 id="result-title" class="result-title"></h2>
+                <p id="result-description" class="result-description"></p>
+                <button id="restart-btn" class="btn-primary">Пройти заново</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="quiz.js"></script>
+</body>
+</html>
